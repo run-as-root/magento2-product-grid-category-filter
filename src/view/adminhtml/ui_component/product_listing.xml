@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <filters name="listing_filters">
+            <filterSelect name="category_id" provider="${ $.parentName }"
+                          component="RunAsRoot_ProductGridCategoryFilter/js/form/element/ui-select-extended"
+                          template="RunAsRoot_ProductGridCategoryFilter/grid/filters/elements/ui-select">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="filterOptions" xsi:type="boolean">true</item>
+                        <item name="levelsVisibility" xsi:type="number">1</item>
+                        <item name="optgroupTmpl" xsi:type="string">
+                            RunAsRoot_ProductGridCategoryFilter/grid/filters/elements/ui-select-optgroup
+                        </item>
+                    </item>
+                </argument>
+                <settings>
+                    <options class="Magento\Catalog\Ui\Component\Product\Form\Categories\Options"/>
+                    <caption translate="true">– Please Select a Category –</caption>
+                    <label translate="true">Categories</label>
+                    <dataScope>category_id</dataScope>
+                    <imports>
+                        <link name="visible">componentType = column, index = ${ $.index }:visible</link>
+                    </imports>
+                </settings>
+            </filterSelect>
+        </filters>
+    </listingToolbar>
+    <columns name="product_columns" class="Magento\Catalog\Ui\Component\Listing\Columns">
+        <column name="category_id" class="RunAsRoot\ProductGridCategoryFilter\Ui\Component\Listing\Column\Category">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Categories</item>
+                    <item name="sortOrder" xsi:type="number">35</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Catalog\Ui\DataProvider\Product\ProductDataProvider"
+                type="RunAsRoot\ProductGridCategoryFilter\Ui\DataProvider\Product\ProductDataProvider"/>
+</config>
