@@ -2,6 +2,7 @@
 .devenv
 .direnv
 vendor
+reports
 .env
 .envrc
 devenv.lock
@@ -9,3 +10,4 @@ devenv.nix
 devenv.yaml
 .DS_Store
 .devenv.flake.nix
+.phpunit.result.cache

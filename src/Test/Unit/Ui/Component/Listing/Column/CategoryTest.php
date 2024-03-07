@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace RunAsRoot\ProductGridCategoryFilter\Test\Unit\Component\Listing\Column;
+namespace RunAsRoot\ProductGridCategoryFilter\Test\Unit\Ui\Component\Listing\Column;
 
 use Magento\Catalog\Api\CategoryRepositoryInterface;
 use Magento\Catalog\Api\Data\CategoryInterface;
 use Magento\Catalog\Model\ProductCategoryList;
-use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory;
 use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Framework\View\Element\UiComponentFactory;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -17,24 +16,24 @@ use RunAsRoot\ProductGridCategoryFilter\Ui\Component\Listing\Column\Category;
 final class CategoryTest extends TestCase
 {
     private Category $sut;
-    private ProductCategoryList|MockObject $productCategory;
-    private CategoryRepositoryInterface|MockObject $categoryRepository;
-    private ContextInterface|MockObject $context;
-    private UiComponentFactory|MockObject $uiComponentFactory;
+    private ProductCategoryList|MockObject $productCategoryMock;
+    private CategoryRepositoryInterface|MockObject $categoryRepositoryMock;
+    private ContextInterface|MockObject $contextMock;
+    private UiComponentFactory|MockObject $uiComponentFactoryMock;
 
     public function setUp(): void
     {
-        $this->productCategory = $this->createMock(ProductCategoryList::class);
-        $this->categoryRepository = $this->createMock(CategoryRepositoryInterface::class);
-        $this->context = $this->createMock(ContextInterface::class);
-        $this->uiComponentFactory = $this->createMock(UiComponentFactory::class);
+        $this->productCategoryMock = $this->createMock(ProductCategoryList::class);
+        $this->categoryRepositoryMock = $this->createMock(CategoryRepositoryInterface::class);
+        $this->contextMock = $this->createMock(ContextInterface::class);
+        $this->uiComponentFactoryMock = $this->createMock(UiComponentFactory::class);
         $components = [];
-        $data = [ 'name' => 'test'];
+        $data = [ 'name' => 'test' ];
         $this->sut = new Category(
-            $this->context,
-            $this->uiComponentFactory,
-            $this->productCategory,
-            $this->categoryRepository,
+            $this->contextMock,
+            $this->uiComponentFactoryMock,
+            $this->productCategoryMock,
+            $this->categoryRepositoryMock,
             $components,
             $data
         );
@@ -47,9 +46,9 @@ final class CategoryTest extends TestCase
                 'items' => [
                     [
                         'entity_id' => 1231,
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ];
 
         $expectedResult = [
@@ -58,21 +57,20 @@ final class CategoryTest extends TestCase
                     [
                         'entity_id' => 1231,
                         'test' => 'Category Name 1,Category Name 2,Category Name 5',
-                    ]
-                ]
-            ]
+                    ],
+                ],
+            ],
         ];
-        $categoryIds = [1, 2, 5];
-        $categoryIdsConsecutive = [[1, null], [2, null], [5, null]];
+        $categoryIds = [ 1, 2, 5 ];
+        $categoryIdsConsecutive = [ [ 1, null ], [ 2, null ], [ 5, null ] ];
         $categoryMocks = $this->getCategoryMocks($categoryIds);
 
-        $this->productCategory->expects($this->once())
+        $this->productCategoryMock->expects($this->once())
             ->method('getCategoryIds')
             ->with(1231)
             ->willReturn($categoryIds);
 
-
-        $this->categoryRepository->expects($this->exactly(count($categoryIds)))
+        $this->categoryRepositoryMock->expects($this->exactly(count($categoryIds)))
             ->method('get')
             ->withConsecutive(...$categoryIdsConsecutive)
             ->willReturnOnConsecutiveCalls(...$categoryMocks);

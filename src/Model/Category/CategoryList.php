@@ -11,7 +11,7 @@ use Magento\Framework\Exception\LocalizedException;
 
 class CategoryList implements OptionSourceInterface
 {
-    public function __construct(private readonly CollectionFactory $collectionFactory)
+    public function __construct(private readonly CollectionFactory $categoryCollectionFactory)
     {
     }
 
@@ -29,6 +29,7 @@ class CategoryList implements OptionSourceInterface
             ],
         ];
 
+        /** @var CategoryModel $category */
         foreach ($collection as $category) {
             foreach ([ $category->getId(), $category->getParentId() ] as $categoryId) {
                 if (isset($categoryById[$categoryId])) {

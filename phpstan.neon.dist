@@ -1,0 +1,11 @@
+parameters:
+  level: max
+  checkMissingIterableValueType: false
+  paths:
+    - src
+  excludePaths:
+    analyseAndScan:
+      - src/Test
+
+includes:
+  - vendor/bitexpert/phpstan-magento/extension.neon

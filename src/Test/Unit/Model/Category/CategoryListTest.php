@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace RunAsRoot\ProductGridCategoryFilter\Test\Unit\Model\Category;
 
-use Magento\Catalog\Model\Category as CategoryModel;
 use Magento\Catalog\Model\ResourceModel\Category\Collection;
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory;
 use Magento\Framework\DataObject;
@@ -27,7 +26,7 @@ final class CategoryListTest extends TestCase
     {
         $category = $this->getMockBuilder(DataObject::class)
             ->disableOriginalConstructor()
-            ->addMethods(['getId', 'getParentId', 'getIsActive', 'getName'])
+            ->addMethods([ 'getId', 'getParentId', 'getIsActive', 'getName' ])
             ->getMock();
         $category->expects($this->exactly(4))
             ->method('getId')
@@ -42,7 +41,7 @@ final class CategoryListTest extends TestCase
             ->method('getName')
             ->willReturn('Zzzz');
 
-        $iterator = new \ArrayIterator([$category]);
+        $iterator = new \ArrayIterator([ $category ]);
 
         $collectionMock = $this->createMock(Collection::class);
         $collectionMock->expects($this->once())
