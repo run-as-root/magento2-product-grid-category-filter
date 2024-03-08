@@ -1,5 +1,5 @@
 {
-    "name": "run-as-root/magento2-product-grid-category-filter",
+    "name": "run-as-root/magento2-product-grid-category-filte",
     "description": "Provides the possibility to filter products by categories in Magento Admin Product Grid",
     "type": "magento2-module",
     "license": "MIT",
