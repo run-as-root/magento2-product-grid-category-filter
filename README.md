@@ -11,11 +11,15 @@ By enabling category-based filtering, users can quickly and easily find products
 
 After installing the module you will see a new column in the product grid called "Categories". This column will display the categories that the product is assigned to.
 
-For example:
-![example.png](docs%2Fexample.png)
+An example of the category filter in action is shown below:
 
-Includes the ability to select/unselect parent and all children via separate buttons.
+![category-filter-opened.png](docs%2Fcategory-filter-opened.png)
 
+
+![category-filter.png](docs%2Fcategory-filter.png)
+
+An example of the category column on the product grid is shown below:
+![product-grid.png](docs%2Fproduct-grid.png)
 
 ## Installation
 
